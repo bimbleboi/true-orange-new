@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "title": "True Orange",
+    "description": "True Orange — official site: shows and links."
+  },
+  "band": {
+    "name": "True Orange",
+    "tagline": "Vancouver",
+    "bio": "We are four musicians with a range of abilities, with backgrounds in rock, ambient, and electronic music in seach of true orange. Join us in our journey."
+  },
+  "hero": {
+    "background": "/images/trueorangesite.png",
+    "backgroundAlt": "True Orange — band photo",
+    "logo": "/images/transgenderorange.png",
+    "logoAlt": "True Orange"
+  },
+  "links": [
+    {
+      "label": "Instagram",
+      "href": "https://www.instagram.com/trueorangeband/",
+      "external": true
+    },
+    { "label": "Bandcamp", "href": "https://yourband.bandcamp.com", "external": true },
+    { "label": "Email", "href": "mailto:you@example.com", "external": false }
+  ],
+  "shows": [
+    {
+      "date": "2026-05-30",
+      "venue": "ORANGE SKYLINE @ The Portside Pub",
+      "city": "Vancouver • 6:00 PM - 9:30 PM",
+      "detailUrl": "https://www.eventbrite.ca/e/orange-skyline-tickets-1988886601364",
+      "ticketsUrl": "https://www.eventbrite.ca/e/orange-skyline-tickets-1988886601364"
+    }
+  ],
+  "releases": [
+    {
+      "title": "Demo EP",
+      "year": "2026",
+      "href": "https://yourband.bandcamp.com",
+      "external": true
+    }
+  ]
+}
