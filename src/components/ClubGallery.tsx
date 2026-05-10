@@ -20,6 +20,7 @@ const WHEEL_THRESHOLD = 72
 
 export function ClubGallery() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const activeIndexRef = useRef(0)
   const viewportRef = useRef<HTMLDivElement>(null)
   const wheelAcc = useRef(0)
   const wheelResetT = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -29,16 +30,61 @@ export function ClubGallery() {
   })
 
   const count = clubPhotos.length
-  const prevIndex = (activeIndex - 1 + count) % count
-  const nextIndex = (activeIndex + 1) % count
+
+  const readIndex = useCallback(() => {
+    const el = viewportRef.current
+    if (!el) return 0
+    const w = el.clientWidth
+    if (w <= 0) return 0
+    return Math.min(count - 1, Math.max(0, Math.round(el.scrollLeft / w)))
+  }, [count])
+
+  const scrollToIndex = useCallback(
+    (index: number, behavior: ScrollBehavior = 'smooth') => {
+      const el = viewportRef.current
+      if (!el) return
+      const w = el.clientWidth
+      if (w <= 0) return
+      const clamped = Math.min(count - 1, Math.max(0, index))
+      activeIndexRef.current = clamped
+      el.scrollTo({ left: clamped * w, behavior })
+      setActiveIndex(clamped)
+    },
+    [count],
+  )
 
   const goPrev = useCallback(() => {
-    setActiveIndex((i) => (i - 1 + count) % count)
-  }, [count])
+    const cur = readIndex()
+    scrollToIndex((cur - 1 + count) % count)
+  }, [count, readIndex, scrollToIndex])
 
   const goNext = useCallback(() => {
-    setActiveIndex((i) => (i + 1) % count)
-  }, [count])
+    const cur = readIndex()
+    scrollToIndex((cur + 1) % count)
+  }, [count, readIndex, scrollToIndex])
+
+  useEffect(() => {
+    const el = viewportRef.current
+    if (!el) return
+
+    const onScroll = () => {
+      const i = readIndex()
+      activeIndexRef.current = i
+      setActiveIndex(i)
+    }
+    el.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+
+    const ro = new ResizeObserver(() => {
+      scrollToIndex(activeIndexRef.current, 'auto')
+    })
+    ro.observe(el)
+
+    return () => {
+      el.removeEventListener('scroll', onScroll)
+      ro.disconnect()
+    }
+  }, [readIndex, scrollToIndex])
 
   useEffect(() => {
     const el = viewportRef.current
@@ -51,8 +97,7 @@ export function ClubGallery() {
 
     const onWheel = (e: WheelEvent) => {
       const dominantX = Math.abs(e.deltaX) >= Math.abs(e.deltaY)
-      const delta =
-        dominantX ? e.deltaX : e.shiftKey ? e.deltaY : 0
+      const delta = dominantX ? e.deltaX : e.shiftKey ? e.deltaY : 0
       const carouselIntent = dominantX || e.shiftKey
 
       if (!carouselIntent) {
@@ -67,9 +112,7 @@ export function ClubGallery() {
       wheelAcc.current = Math.max(-240, Math.min(240, wheelAcc.current))
 
       if (wheelResetT.current != null) clearTimeout(wheelResetT.current)
-      wheelResetT.current = setTimeout(() => {
-        bumpWheel()
-      }, 140)
+      wheelResetT.current = setTimeout(() => bumpWheel(), 140)
 
       if (wheelAcc.current <= -WHEEL_THRESHOLD) {
         goNext()
@@ -87,7 +130,7 @@ export function ClubGallery() {
     }
   }, [goPrev, goNext])
 
-  const onActivePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+  const onViewportPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.pointerType === 'mouse' && e.button !== 0) return
     drag.current = {
       pointerId: e.pointerId,
@@ -96,7 +139,7 @@ export function ClubGallery() {
     e.currentTarget.setPointerCapture(e.pointerId)
   }
 
-  const onActivePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+  const onViewportPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
     if (drag.current.pointerId !== e.pointerId) return
     const dx = e.clientX - drag.current.startX
     try {
@@ -105,10 +148,10 @@ export function ClubGallery() {
       /* released */
     }
     drag.current.pointerId = null
-    if (Math.abs(dx) >= DRAG_THRESHOLD_PX) {
-      if (dx > 0) goPrev()
-      else goNext()
-    }
+
+    if (Math.abs(dx) < DRAG_THRESHOLD_PX) return
+    if (dx > 0) goPrev()
+    else goNext()
   }
 
   return (
@@ -131,74 +174,46 @@ export function ClubGallery() {
       <h2 className="section-heading club-callout" id="gallery-heading">
         Join the True Orange club
       </h2>
+
       <div
         className="club-carousel"
         role="region"
         aria-roledescription="carousel"
         aria-label="Band photo gallery"
       >
-        <div className="club-carousel__viewport" ref={viewportRef}>
-          <div className="club-carousel__track">
-            <button
-              type="button"
-              className="club-carousel__slide club-carousel__slide--side"
-              aria-label={`Previous photo: ${clubPhotos[prevIndex].alt}`}
-              onClick={goPrev}
-            >
-              <img
-                src={`/images/${encodeURIComponent(clubPhotos[prevIndex].file)}`}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                draggable={false}
-              />
-            </button>
-            <div
-              id="club-carousel-pane"
-              className="club-carousel__slide club-carousel__slide--active"
-              aria-hidden={false}
-              onPointerDown={onActivePointerDown}
-              onPointerUp={onActivePointerUp}
-              onPointerCancel={onActivePointerUp}
-            >
-              <img
-                src={`/images/${encodeURIComponent(clubPhotos[activeIndex].file)}`}
-                alt={clubPhotos[activeIndex].alt}
-                loading="eager"
-                decoding="async"
-                draggable={false}
-              />
-            </div>
-            <button
-              type="button"
-              className="club-carousel__slide club-carousel__slide--side"
-              aria-label={`Next photo: ${clubPhotos[nextIndex].alt}`}
-              onClick={goNext}
-            >
-              <img
-                src={`/images/${encodeURIComponent(clubPhotos[nextIndex].file)}`}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                draggable={false}
-              />
-            </button>
-          </div>
-        </div>
         <div
-          className="club-carousel__dots"
-          role="tablist"
-          aria-label="Choose photo"
+          className="club-carousel__viewport"
+          ref={viewportRef}
+          onPointerDown={onViewportPointerDown}
+          onPointerUp={onViewportPointerUp}
+          onPointerCancel={onViewportPointerUp}
         >
-          {clubPhotos.map((_, i) => (
+          {clubPhotos.map((photo, i) => (
+            <figure
+              key={photo.file}
+              className="club-carousel__slide"
+              aria-hidden={i !== activeIndex}
+            >
+              <img
+                src={`/images/${encodeURIComponent(photo.file)}`}
+                alt={photo.alt}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+                draggable={false}
+              />
+            </figure>
+          ))}
+        </div>
+
+        <div className="club-carousel__dots" role="tablist" aria-label="Choose photo">
+          {clubPhotos.map((photo, i) => (
             <button
-              key={clubPhotos[i].file}
+              key={photo.file}
               type="button"
               role="tab"
               aria-selected={i === activeIndex}
-              aria-controls="club-carousel-pane"
               className={`club-carousel__dot${i === activeIndex ? ' club-carousel__dot--active' : ''}`}
-              onClick={() => setActiveIndex(i)}
+              onClick={() => scrollToIndex(i)}
               aria-label={`Photo ${i + 1}`}
             />
           ))}
