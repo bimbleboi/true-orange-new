@@ -20,9 +20,29 @@
       "href": "https://www.instagram.com/trueorangeband/",
       "external": true
     },
-    { "label": "Bandcamp", "href": "https://yourband.bandcamp.com", "external": true },
-    { "label": "Email", "href": "mailto:you@example.com", "external": false }
+    {
+      "label": "SoundCloud",
+      "href": "https://soundcloud.com/true-orange",
+      "external": true
+    },
+    {
+      "label": "Bandcamp",
+      "href": "https://trueorange.bandcamp.com/track/you-hate-everything",
+      "external": true
+    },
+    {
+      "label": "Email",
+      "href": "https://mail.google.com/mail/?view=cm&to=trueorangeband@gmail.com",
+      "external": true
+    }
   ],
+  "preview": {
+    "title": "Listen - You Hate everything",
+    "src": "/audio/you-hate-everything.wav",
+    "listenUrl": "https://trueorange.bandcamp.com/track/you-hate-everything",
+    "clipStart": 14,
+    "clipEnd": 44
+  },
   "shows": [
     {
       "date": "2026-05-30",
@@ -34,9 +54,9 @@
   ],
   "releases": [
     {
-      "title": "Demo EP",
+      "title": "You Hate Everything",
       "year": "2026",
-      "href": "https://yourband.bandcamp.com",
+      "href": "https://trueorange.bandcamp.com/track/you-hate-everything",
       "external": true
     }
   ]

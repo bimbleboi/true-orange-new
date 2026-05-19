@@ -5,6 +5,7 @@ import { ClubGallery } from './components/ClubGallery'
 import { EmailSignup } from './components/EmailSignup'
 import { Hero } from './components/Hero'
 import { LinkGrid } from './components/LinkGrid'
+import { MusicPreview } from './components/MusicPreview'
 import { ShowList } from './components/ShowList'
 import { SiteFooter } from './components/SiteFooter'
 import { SiteHeader } from './components/SiteHeader'
@@ -79,6 +80,15 @@ function App() {
       />
       <main>
         <Bio text={data.band.bio} />
+        {data.preview?.src ? (
+          <MusicPreview
+            heading={data.preview.title}
+            src={data.preview.src}
+            listenUrl={data.preview.listenUrl}
+            clipStart={data.preview.clipStart ?? 0}
+            clipEnd={data.preview.clipEnd ?? 30}
+          />
+        ) : null}
         <ShowList shows={data.shows} />
         <EmailSignup />
         <LinkGrid links={data.links} />
