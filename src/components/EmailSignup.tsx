@@ -5,8 +5,9 @@ export function EmailSignup() {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [isSuccess, setIsSuccess] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const trimmed = email.trim()
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)
@@ -17,9 +18,35 @@ export function EmailSignup() {
       return
     }
 
-    setIsSuccess(true)
-    setMessage('Thanks for signing up! You are on the list.')
-    setEmail('')
+    setSubmitting(true)
+    setMessage('')
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: trimmed }),
+      })
+
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean
+        error?: string
+      }
+
+      if (res.ok && data.ok) {
+        setIsSuccess(true)
+        setMessage('Thanks for signing up! You are on the list.')
+        setEmail('')
+      } else {
+        setIsSuccess(false)
+        setMessage(data.error ?? 'Signup failed. Please try again.')
+      }
+    } catch {
+      setIsSuccess(false)
+      setMessage('Signup failed. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -38,8 +65,11 @@ export function EmailSignup() {
           placeholder="you@email.com"
           autoComplete="email"
           required
+          disabled={submitting}
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" disabled={submitting}>
+          {submitting ? 'Signing up…' : 'Sign Up'}
+        </button>
       </form>
       {message ? (
         <p
