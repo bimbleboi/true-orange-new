@@ -22,6 +22,8 @@ export function Hero({
           alt={backgroundAlt}
           width={1920}
           height={1080}
+          fetchPriority="high"
+          loading="eager"
           decoding="async"
         />
         <div className="hero-landing__scrim" aria-hidden="true" />
@@ -34,6 +36,7 @@ export function Hero({
             alt={logoAlt}
             width={800}
             height={200}
+            loading="eager"
             decoding="async"
           />
         </h1>

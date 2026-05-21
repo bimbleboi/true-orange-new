@@ -2,15 +2,15 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 const clubPhotos = [
   {
-    file: 'picture 1.png',
+    file: 'picture-1.jpg',
     alt: 'True Orange — band candid on the couch.',
   },
   {
-    file: 'picture 2.png',
+    file: 'picture-2.jpg',
     alt: 'True Orange — band photo indoors.',
   },
   {
-    file: 'picture 3.png',
+    file: 'picture-3.jpg',
     alt: 'True Orange — group on the couch, pink light.',
   },
 ] as const
