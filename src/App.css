@@ -580,127 +580,105 @@ main {
   max-width: 100%;
 }
 
-.club-section .club-callout {
-  margin: 0 0 clamp(1.25rem, 3vw, 1.75rem);
-  padding: 0;
-  text-align: center;
-}
-
-.club-carousel {
-  padding-bottom: 0.5rem;
-  max-width: min(960px, 100%);
+.club-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(0.75rem, 2.5vw, 1.25rem);
+  max-width: min(920px, 100%);
   margin-inline: auto;
+  overflow: visible;
 }
 
-.club-carousel__viewport {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--bg) 96%, var(--border) 4%);
-  touch-action: pan-x pinch-zoom;
-  margin-inline: auto;
-  scrollbar-width: none;
-}
-
-.club-carousel__viewport::-webkit-scrollbar {
-  display: none;
-}
-
-.club-carousel__slide {
-  flex: 0 0 100%;
-  min-width: 100%;
-  max-width: 100%;
-  height: min(62vh, 620px);
+.club-gallery__item {
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem;
-  box-sizing: border-box;
-  text-align: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  overflow: hidden;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bg) 96%, var(--border) 4%);
+  padding: 0.65rem;
+  position: relative;
+  z-index: 0;
+  transform-origin: center center;
+  transition:
+    transform 260ms ease,
+    z-index 0s linear 260ms;
 }
 
-.club-carousel__slide img {
-  width: auto;
+.club-gallery__item:hover {
+  z-index: 2;
+  transform: scale(1.06);
+  transition:
+    transform 260ms ease,
+    z-index 0s;
+}
+
+.club-gallery__item img {
+  width: 100%;
   height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  max-height: min(48vh, 420px);
   object-fit: contain;
   object-position: center;
   display: block;
-  margin-inline: auto;
-  user-select: none;
-  pointer-events: none;
-}
-
-@media (max-width: 480px) {
-  .club-carousel__slide {
-    height: min(55vh, 460px);
-    padding: 0.6rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .club-carousel__viewport {
-    scroll-behavior: auto;
+  .club-gallery__item {
+    transition: none;
+  }
+
+  .club-gallery__item:hover {
+    transform: none;
   }
 }
 
-.club-carousel__dots {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.65rem;
-  margin-top: 1rem;
-}
+@media (max-width: 480px) {
+  .club-gallery {
+    gap: 0.5rem;
+  }
 
-.club-carousel__dot {
-  width: 10px;
-  height: 10px;
-  padding: 0;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: transparent;
-  cursor: pointer;
-  transition:
-    background 200ms ease,
-    border-color 200ms ease,
-    transform 200ms ease;
-}
+  .club-gallery__item {
+    padding: 0.4rem;
+    border-radius: 8px;
+  }
 
-.club-carousel__dot:hover {
-  border-color: var(--accent-border);
-}
-
-.club-carousel__dot:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-.club-carousel__dot--active {
-  background: var(--accent);
-  border-color: var(--accent-border);
-  transform: scale(1.15);
+  .club-gallery__item img {
+    max-height: min(36vh, 260px);
+  }
 }
 
 .site-footer {
+  position: relative;
   margin-top: auto;
+  overflow: hidden;
+  border-top: none;
+}
+
+.site-footer__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(44vh, 440px);
+  object-fit: cover;
+  object-position: center 40%;
+  filter: blur(3px);
+  transform: scale(1.03);
+}
+
+.site-footer__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   padding: 1.5rem 1.25rem;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  font-family: var(--sans);
-  font-size: var(--body-size);
-  line-height: var(--body-leading);
-  letter-spacing: var(--body-tracking);
-  color: var(--text);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.45) 45%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
 }
 
 .site-footer p {
@@ -713,9 +691,14 @@ main {
   align-items: center;
   justify-content: center;
   gap: 0.75rem 1.25rem;
+  font-family: var(--sans);
+  font-size: var(--body-size);
+  line-height: var(--body-leading);
+  letter-spacing: var(--body-tracking);
+  text-align: center;
 }
 
 .site-footer__tagline,
 .site-footer__copyright {
-  color: var(--text);
+  color: rgba(255, 255, 255, 0.95);
 }

@@ -80,6 +80,8 @@ function App() {
       />
       <main>
         <Bio text={data.band.bio} />
+        <ShowList shows={data.shows} />
+        <LinkGrid links={data.links} />
         {data.preview?.src ? (
           <MusicPreview
             heading={data.preview.title}
@@ -89,10 +91,8 @@ function App() {
             clipEnd={data.preview.clipEnd ?? 30}
           />
         ) : null}
-        <ShowList shows={data.shows} />
-        <EmailSignup />
-        <LinkGrid links={data.links} />
         <ClubGallery />
+        <EmailSignup />
       </main>
       <SiteFooter bandName={data.band.name} />
     </div>

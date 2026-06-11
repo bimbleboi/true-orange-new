@@ -51,8 +51,10 @@ export function EmailSignup() {
 
   return (
     <section className="section" id="signup" aria-labelledby="signup-heading">
-      <h2 id="signup-heading">Email List</h2>
-      <p className="signup-description">Sign up to receive updates on the band</p>
+      <h2 id="signup-heading">Join the True Orange club</h2>
+      <p className="signup-description">
+        Sign up for our email list to receive updates on the band
+      </p>
       <form className="signup-form" onSubmit={onSubmit} noValidate>
         <label htmlFor="email-input" className="sr-only">
           Email address
