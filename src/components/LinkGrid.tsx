@@ -12,7 +12,7 @@ export function LinkGrid({ links }: Props) {
         {links.map((link) => (
           <li key={link.href}>
             <a
-              className="link-grid__pill"
+              className="button-link"
               href={link.href}
               {...(link.external !== false
                 ? { target: '_blank', rel: 'noreferrer' }

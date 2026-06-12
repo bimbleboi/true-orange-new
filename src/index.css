@@ -8,13 +8,16 @@
   --accent-border: rgba(170, 59, 255, 0.5);
   --social-bg: rgba(244, 243, 236, 0.5);
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  /* One size for body UI everywhere (header, hero line, main paragraphs) */
-  --body-size: 17px;
-  --body-leading: 1.6;
-  --body-tracking: 0.02em;
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --body-size: 16px;
+  --body-leading: 1.65;
+  --body-tracking: -0.01em;
+  --display-tracking: 0.06em;
+  --section-gap: clamp(2rem, 5vw, 2.75rem);
+  --section-inner-gap: 1rem;
 
-  font: var(--body-size) / var(--body-leading) var(--sans);
+  font: var(--body-size) / var(--body-leading) var(--font-body);
   letter-spacing: var(--body-tracking);
   color-scheme: light dark;
   color: var(--text);
@@ -49,19 +52,19 @@ html {
 
 body {
   margin: 0;
-  font-family: var(--sans);
+  font-family: var(--font-body);
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: var(--display-tracking);
 }
 
 h1 {
-  font-family: var(--sans);
-  font-weight: 600;
   color: var(--text-h);
   font-size: clamp(2rem, 5vw, 3rem);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   line-height: 1.1;
-}
-
-h2 {
-  font-family: var(--sans);
-  font-weight: inherit;
 }

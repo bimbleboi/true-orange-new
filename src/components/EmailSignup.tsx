@@ -69,7 +69,7 @@ export function EmailSignup() {
           required
           disabled={submitting}
         />
-        <button type="submit" disabled={submitting}>
+        <button type="submit" className="button-link" disabled={submitting}>
           {submitting ? 'Signing up…' : 'Sign Up'}
         </button>
       </form>

@@ -47,20 +47,58 @@ function App() {
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
 
     let rafId = 0
+    let cancelled = false
     const startTime = performance.now()
 
+    const stop = () => {
+      if (cancelled) return
+      cancelled = true
+      window.cancelAnimationFrame(rafId)
+      window.removeEventListener('wheel', stop)
+      window.removeEventListener('touchstart', stop)
+      window.removeEventListener('touchmove', stop)
+      window.removeEventListener('mousedown', stop)
+      window.removeEventListener('keydown', onKeyDown)
+    }
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      const scrollKeys = new Set([
+        'ArrowDown',
+        'ArrowUp',
+        'PageDown',
+        'PageUp',
+        'Home',
+        'End',
+        ' ',
+        'Spacebar',
+      ])
+      if (scrollKeys.has(e.key)) stop()
+    }
+
+    window.addEventListener('wheel', stop, { passive: true })
+    window.addEventListener('touchstart', stop, { passive: true })
+    window.addEventListener('touchmove', stop, { passive: true })
+    window.addEventListener('mousedown', stop)
+    window.addEventListener('keydown', onKeyDown)
+
     const animate = (now: number) => {
+      if (cancelled) return
+
       const elapsed = now - startTime
       const progress = Math.min(elapsed / durationMs, 1)
       const eased = easeInOutCubic(progress)
       const nextY = startY + (targetY - startY) * eased
       window.scrollTo(0, nextY)
 
-      if (progress < 1) rafId = window.requestAnimationFrame(animate)
+      if (progress < 1) {
+        rafId = window.requestAnimationFrame(animate)
+      } else {
+        stop()
+      }
     }
 
     rafId = window.requestAnimationFrame(animate)
-    return () => window.cancelAnimationFrame(rafId)
+    return stop
   }, [])
 
   return (
