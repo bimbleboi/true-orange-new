@@ -6,7 +6,7 @@
   "band": {
     "name": "True Orange",
     "tagline": "Vancouver",
-    "bio": "We are four musicians with a range of abilities, with backgrounds in rock, ambient, and electronic music. Join us in our journey in search of true orange."
+    "bio": "We are four musicians with a range of musical backgrounds and specialties from techno and ambient to singer songwriter music. Join us in our journey in search of true orange."
   },
   "hero": {
     "background": "/images/trueorangesite.jpg",
@@ -46,10 +46,10 @@
   "shows": [
     {
       "date": "2026-06-25",
-      "venue": "Summer Stars @ The Pearl",
-      "city": "881 Granville St, Vancouver • Doors 6:00 PM • GA $26.35",
+      "venue": "Summer Stars @ Red Room",
+      "city": "398 Richards St, Vancouver • Doors 6:00 PM • GA $26.35",
       "detailUrl": null,
-      "ticketsUrl": "https://www.ticketweb.ca/event/summer-stars-the-pearl-tickets/14973533?pl=thepearl&utm_source=ig&utm_medium=social&utm_content=link_in_bio"
+      "ticketsUrl": "https://www.eventbrite.ca/e/summer-stars-tickets-1992293996976?aff=oddtdtcreator"
     }
   ],
   "releases": [
