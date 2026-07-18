@@ -71,21 +71,12 @@ main p {
   );
 }
 
-/* Portrait screens: show the whole photo (no side-cropping) with the
-   logo below it instead of overlaid, so all five stay in frame */
-@media (max-width: 900px) and (orientation: portrait) {
-  .hero-landing {
-    min-height: 0;
-  }
-
-  .hero-landing__media {
-    position: relative;
-    inset: auto;
-  }
-
+/* Portrait phones: show the whole photo (no crop) so all five stay in frame.
+   Hero still fills the first screen; logo moves up so the band stays clear. */
+@media (max-width: 700px) and (orientation: portrait) {
   .hero-landing__bg {
-    height: auto;
     object-fit: contain;
+    object-position: center 68%;
   }
 
   .hero-landing__scrim {
@@ -93,12 +84,8 @@ main p {
   }
 
   .hero-landing__content {
-    padding: 1.75rem 1.25rem 2.25rem;
-    gap: 1rem;
-  }
-
-  .hero-landing__logo {
-    width: min(70vw, 340px);
+    justify-content: flex-start;
+    padding-top: clamp(3rem, 14vw, 5rem);
   }
 }
 
