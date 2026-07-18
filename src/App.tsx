@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import site from './data/site.json'
 import { Bio } from './components/Bio'
 import { ClubGallery } from './components/ClubGallery'
@@ -8,30 +8,16 @@ import { LinkGrid } from './components/LinkGrid'
 import { MusicPreview } from './components/MusicPreview'
 import { ShowList } from './components/ShowList'
 import { SiteFooter } from './components/SiteFooter'
-import { SiteHeader } from './components/SiteHeader'
 import type { SiteConfig } from './types/site'
 import './App.css'
 
 const data = site as SiteConfig
 
 function App() {
-  const [heroInView, setHeroInView] = useState(true)
-
   useEffect(() => {
     document.title = data.meta.title
     const desc = document.querySelector('meta[name="description"]')
     if (desc) desc.setAttribute('content', data.meta.description)
-  }, [])
-
-  useEffect(() => {
-    const el = document.getElementById('top')
-    if (!el) return
-    const io = new IntersectionObserver(
-      ([entry]) => setHeroInView(entry.isIntersecting),
-      { rootMargin: '-56px 0px 0px 0px', threshold: 0 },
-    )
-    io.observe(el)
-    return () => io.disconnect()
   }, [])
 
   useEffect(() => {
@@ -106,12 +92,6 @@ function App() {
 
   return (
     <div className="site">
-      <SiteHeader
-        name={data.band.name}
-        logoSrc={data.hero.logo}
-        logoAlt={data.hero.logoAlt}
-        overlay={heroInView}
-      />
       <Hero
         background={data.hero.background}
         backgroundAlt={data.hero.backgroundAlt}
