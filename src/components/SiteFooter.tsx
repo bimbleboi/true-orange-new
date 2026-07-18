@@ -8,8 +8,8 @@ export function SiteFooter({ bandName }: Props) {
     <footer className="site-footer">
       <img
         className="site-footer__photo"
-        src="/images/IMG_7222.jpeg"
-        alt="True Orange — band performing on stage under red lights."
+        src="/images/LDEAN_DSC_5927.jpg"
+        alt="True Orange — full band on stage under blue and gold lights."
         loading="lazy"
         decoding="async"
       />

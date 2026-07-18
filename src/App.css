@@ -37,11 +37,11 @@
 }
 
 .site-header--overlay {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: none;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.72) 0%,
-    rgba(0, 0, 0, 0.35) 55%,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.18) 55%,
     transparent 100%
   );
 }
@@ -155,7 +155,7 @@
 }
 
 .site-header.site-header--overlay .site-nav--hero-bar a:hover {
-  color: #ff9f45;
+  color: var(--accent);
 }
 
 .site-nav--hero-bar {
@@ -265,7 +265,7 @@ main p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 40%;
+  object-position: center top;
   display: block;
 }
 
@@ -275,9 +275,9 @@ main p {
   pointer-events: none;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.35) 0%,
-    rgba(0, 0, 0, 0.1) 42%,
-    rgba(0, 0, 0, 0.55) 100%
+    rgba(10, 11, 13, 0.15) 0%,
+    rgba(10, 11, 13, 0.05) 45%,
+    rgba(10, 11, 13, 0.45) 100%
   );
 }
 
@@ -380,7 +380,7 @@ main > .section + .section::before {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: var(--display-tracking);
-  color: var(--text);
+  color: var(--text-h);
   line-height: 1.35;
 }
 
@@ -470,10 +470,17 @@ main > .section + .section::before {
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
 }
 
 .button-link:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  background: rgba(232, 184, 74, 0.2);
+  border-color: var(--accent);
+  color: var(--text-h);
 }
 
 button.button-link:disabled {
@@ -503,14 +510,24 @@ button.button-link:disabled:hover {
   flex: 1 1 240px;
   min-width: 0;
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 0.55rem 0.7rem;
-  background: color-mix(in srgb, var(--bg) 96%, #000 4%);
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  background: var(--surface);
   font-family: var(--font-body);
   font-size: var(--body-size);
   line-height: var(--body-leading);
   letter-spacing: var(--body-tracking);
-  color: var(--text);
+  color: var(--text-h);
+}
+
+.signup-form input::placeholder {
+  color: color-mix(in srgb, var(--text) 75%, transparent);
+}
+
+.signup-form input:focus {
+  outline: none;
+  border-color: var(--accent-border);
+  box-shadow: 0 0 0 3px var(--accent-bg);
 }
 
 .signup-message {
@@ -584,7 +601,8 @@ button.button-link:disabled:hover {
   width: 100%;
   max-width: 100%;
   height: 2.75rem;
-  color-scheme: light dark;
+  color-scheme: dark;
+  border-radius: 999px;
 }
 
 .music-preview__link {
@@ -612,21 +630,25 @@ button.button-link:disabled:hover {
   justify-content: center;
   overflow: hidden;
   border-radius: 10px;
-  background: color-mix(in srgb, var(--bg) 96%, var(--border) 4%);
+  background: var(--surface);
+  border: 1px solid var(--border);
   padding: 0.65rem;
   position: relative;
   z-index: 0;
   transform-origin: center center;
   transition:
     transform 260ms ease,
+    border-color 260ms ease,
     z-index 0s linear 260ms;
 }
 
 .club-gallery__item:hover {
   z-index: 2;
   transform: scale(1.06);
+  border-color: var(--accent-border);
   transition:
     transform 260ms ease,
+    border-color 260ms ease,
     z-index 0s;
 }
 
@@ -677,7 +699,7 @@ button.button-link:disabled:hover {
   height: auto;
   max-height: min(44vh, 440px);
   object-fit: cover;
-  object-position: center 40%;
+  object-position: center 42%;
   filter: blur(3px);
   transform: scale(1.03);
 }

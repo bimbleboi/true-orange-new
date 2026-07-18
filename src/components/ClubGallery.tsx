@@ -1,19 +1,27 @@
 const clubPhotos = [
   {
-    file: 'IMG_7195.jpeg',
-    alt: 'True Orange — live show, crowd watching the band from the floor.',
+    file: 'LDEAN_DSC_5904.jpg',
+    alt: 'True Orange — guitar and keys under chartreuse stage light.',
   },
   {
-    file: 'P5300447.jpeg',
-    alt: 'True Orange — live performance from above the crowd.',
+    file: 'right-column-first-row.jpg',
+    alt: 'True Orange — full band live under blue and gold stage lights.',
   },
   {
-    file: 'IMG_7649.jpg',
-    alt: 'True Orange — band on stage, seen from the crowd.',
+    file: 'left-column-second-row.jpg',
+    alt: 'True Orange — singer and bass under yellow and blue lights.',
   },
   {
-    file: 'IMG_7212.jpeg',
-    alt: 'True Orange — full room during a live set.',
+    file: 'band-pic-aura.jpg',
+    alt: 'True Orange — band portrait.',
+  },
+  {
+    file: 'left-column-third-row.jpg',
+    alt: 'True Orange — bass and guitar under blue stage light.',
+  },
+  {
+    file: 'band-pic-2.jpg',
+    alt: 'True Orange — band photo.',
   },
 ] as const
 

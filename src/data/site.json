@@ -6,11 +6,11 @@
   "band": {
     "name": "True Orange",
     "tagline": "Vancouver",
-    "bio": "We are four musicians with a range of musical backgrounds and specialties from techno and ambient to singer songwriter music. Join us in our journey in search of true orange."
+    "bio": "We are five musicians with a range of musical backgrounds and specialties from techno and ambient to singer songwriter music. Join us in our journey in search of true orange."
   },
   "hero": {
-    "background": "/images/trueorangesite.jpg",
-    "backgroundAlt": "True Orange — band photo",
+    "background": "/images/the-truest-orange.jpg",
+    "backgroundAlt": "True Orange — the five of us against a graffiti wall at night",
     "logo": "/images/transgenderorange.png",
     "logoAlt": "True Orange"
   },
@@ -43,15 +43,7 @@
     "clipStart": 14,
     "clipEnd": 44
   },
-  "shows": [
-    {
-      "date": "2026-06-25",
-      "venue": "Summer Stars @ Red Room",
-      "city": "398 Richards St, Vancouver • Doors 6:00 PM • GA $26.35",
-      "detailUrl": null,
-      "ticketsUrl": "https://www.eventbrite.ca/e/summer-stars-tickets-1992293996976?aff=oddtdtcreator"
-    }
-  ],
+  "shows": [],
   "releases": [
     {
       "title": "You Hate Everything",

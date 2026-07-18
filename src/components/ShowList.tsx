@@ -19,7 +19,7 @@ export function ShowList({ shows }: Props) {
     <section className="section" id="shows" aria-labelledby="shows-heading">
       <h2 id="shows-heading">Upcoming Shows</h2>
       {shows.length === 0 ? (
-        <p className="muted">No upcoming dates — check back soon.</p>
+        <p className="muted">Coming soon...</p>
       ) : (
         <ul className="show-list">
           {shows.map((show) => (
