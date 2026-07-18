@@ -163,6 +163,18 @@
   gap: 1rem;
 }
 
+/* Non-desktop (touch) devices: no fixed header, hero owns the full screen */
+@media (hover: none) and (pointer: coarse) {
+  .site-header {
+    display: none;
+  }
+
+  .hero-landing {
+    margin-top: 0;
+    min-height: 100svh;
+  }
+}
+
 @media (max-width: 559px) {
   .site-header__tier--expanded {
     justify-content: center;

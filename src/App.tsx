@@ -37,6 +37,9 @@ function App() {
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduceMotion) return
+    // Skip the scroll nudge on phones/tablets — desktop only
+    const touchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches
+    if (touchDevice) return
     if (window.scrollY > 8) return
 
     const startY = window.scrollY
