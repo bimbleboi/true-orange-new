@@ -59,10 +59,10 @@ main p {
   display: block;
 }
 
-/* Mobile: bias the crop left so the far-left band member stays partly in frame */
+/* Mobile: slight left bias so the far-left band member peeks into frame */
 @media (max-width: 768px) {
   .hero-landing__bg {
-    object-position: 22% top;
+    object-position: 47% top;
   }
 }
 
