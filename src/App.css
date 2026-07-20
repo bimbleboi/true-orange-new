@@ -62,7 +62,7 @@ main p {
 /* Mobile: slight left bias so the far-left band member peeks into frame */
 @media (max-width: 768px) {
   .hero-landing__bg {
-    object-position: 47% top;
+    object-position: 48% top;
   }
 }
 
