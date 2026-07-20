@@ -91,6 +91,8 @@ main p {
   animation: heroReveal 1700ms ease-out 150ms both;
   font: inherit;
   color: inherit;
+  /* Sit ~7% higher on the landing photo */
+  transform: translateY(-7vh);
 }
 
 .hero-landing__title {
@@ -131,11 +133,11 @@ main p {
 
 @keyframes heroReveal {
   from {
-    transform: translateY(18px);
+    transform: translateY(calc(-7vh + 18px));
     opacity: 0;
   }
   to {
-    transform: translateY(0);
+    transform: translateY(-7vh);
     opacity: 1;
   }
 }
