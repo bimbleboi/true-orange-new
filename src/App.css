@@ -59,6 +59,13 @@ main p {
   display: block;
 }
 
+/* Mobile: bias the crop left so the far-left band member stays partly in frame */
+@media (max-width: 768px) {
+  .hero-landing__bg {
+    object-position: 22% top;
+  }
+}
+
 .hero-landing__scrim {
   position: absolute;
   inset: 0;
