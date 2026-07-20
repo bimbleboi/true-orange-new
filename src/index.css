@@ -12,10 +12,10 @@
   --surface: #12141a;
 
   --font-display: 'Outfit', system-ui, sans-serif;
-  --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
   --body-size: 16px;
   --body-leading: 1.7;
-  --body-tracking: 0.01em;
+  --body-tracking: 0;
   --display-tracking: 0.06em;
   --section-gap: clamp(2rem, 5vw, 2.75rem);
   --section-inner-gap: 1rem;
