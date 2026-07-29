@@ -19,14 +19,6 @@ export type SiteRelease = {
   external?: boolean
 }
 
-export type SitePreview = {
-  title: string
-  src: string
-  listenUrl?: string
-  clipStart?: number
-  clipEnd?: number
-}
-
 export type SiteConfig = {
   meta: {
     title: string
@@ -46,5 +38,4 @@ export type SiteConfig = {
   links: SiteLink[]
   shows: SiteShow[]
   releases: SiteRelease[]
-  preview?: SitePreview | null
 }
