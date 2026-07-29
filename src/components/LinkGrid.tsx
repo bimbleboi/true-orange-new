@@ -6,8 +6,7 @@ type Props = {
 
 export function LinkGrid({ links }: Props) {
   return (
-    <section className="section" id="links" aria-labelledby="links-heading">
-      <h2 id="links-heading">Links</h2>
+    <section className="section" id="links" aria-label="Links">
       <ul className="link-grid">
         {links.map((link) => (
           <li key={link.href}>

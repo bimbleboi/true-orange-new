@@ -279,7 +279,49 @@ export function ClubGallery() {
             onPointerDown={(e) => e.stopPropagation()}
             aria-label={muted ? 'Unmute video' : 'Mute video'}
           >
-            {muted ? 'Sound off' : 'Sound on'}
+            {muted ? (
+              <svg
+                className="stories__mute-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  fill="currentColor"
+                  d="M11.5 4.8 7.2 9H3.8v6H7.2l4.3 4.2V4.8Z"
+                />
+                <path
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  d="m4 4 16 16"
+                />
+              </svg>
+            ) : (
+              <svg
+                className="stories__mute-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  fill="currentColor"
+                  d="M11.5 4.8 7.2 9H3.8v6H7.2l4.3 4.2V4.8Z"
+                />
+                <path
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  d="M14.6 9.2a3.4 3.4 0 0 1 0 5.6"
+                />
+                <path
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  d="M17 6.8a6.6 6.6 0 0 1 0 10.4"
+                />
+              </svg>
+            )}
           </button>
         ) : null}
 

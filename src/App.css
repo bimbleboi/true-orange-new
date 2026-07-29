@@ -389,6 +389,7 @@ button.button-link:disabled:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  justify-content: center;
 }
 
 .club-section.section {
@@ -462,28 +463,36 @@ button.button-link:disabled:hover {
   pointer-events: none;
 }
 
+img.stories__media {
+  object-fit: contain;
+}
+
 .stories__mute {
   position: absolute;
   right: 0.7rem;
   bottom: 0.7rem;
   z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 2px;
   background: rgba(10, 11, 13, 0.55);
   color: rgba(255, 255, 255, 0.95);
-  font-family: var(--font-display);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: var(--display-tracking);
-  text-transform: uppercase;
-  line-height: 1.2;
-  padding: 0.35rem 0.55rem;
   cursor: pointer;
   backdrop-filter: blur(6px);
 }
 
 .stories__mute:hover {
   border-color: rgba(255, 255, 255, 0.7);
+}
+
+.stories__mute-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  display: block;
 }
 
 @media (max-width: 480px) {

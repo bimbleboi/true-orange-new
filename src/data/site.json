@@ -36,7 +36,18 @@
       "external": true
     }
   ],
-  "shows": [],
+  "shows": [
+    {
+      "date": "2026-08-27",
+      "venue": "Redgate",
+      "city": "Vancouver"
+    },
+    {
+      "date": "2026-08-28",
+      "venue": "The Gallery UBC",
+      "city": "Vancouver"
+    }
+  ],
   "releases": [
     {
       "title": "You Hate Everything",
