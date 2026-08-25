@@ -1,0 +1,64 @@
+:root {
+  /* Stage palette from LDEAN live photos — always dark */
+  --text: #b7b3a8;
+  --text-h: #f3efe6;
+  --bg: #0a0b0d;
+  --border: #2a2c30;
+  --accent: #e8b84a;
+  --accent-bg: rgba(232, 184, 74, 0.12);
+  --accent-border: rgba(232, 184, 74, 0.45);
+  --accent-cool: #4a9fe0;
+  --social-bg: rgba(28, 30, 34, 0.85);
+  --surface: #12141a;
+
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --body-size: 16px;
+  --body-leading: 1.7;
+  --body-tracking: 0;
+  --display-tracking: 0.06em;
+  --section-gap: clamp(2rem, 5vw, 2.75rem);
+  --section-inner-gap: 1rem;
+
+  font: var(--body-size) / var(--body-leading) var(--font-body);
+  letter-spacing: var(--body-tracking);
+  color-scheme: dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100svh;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: 1rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(74, 159, 224, 0.1), transparent 55%),
+    radial-gradient(ellipse 70% 40% at 85% 20%, rgba(232, 184, 74, 0.06), transparent 50%),
+    var(--bg);
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: var(--display-tracking);
+}
+
+h1 {
+  color: var(--text-h);
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
